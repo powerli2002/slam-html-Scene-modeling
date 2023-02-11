@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./static//images/windows-icon@2x.ico" />
+
+    <title>微兔可视化 | 演示预览</title>
+
+    <!-- 轮播swiper插件样式 -->
+    <link rel="stylesheet" href="./static/js/swiper/swiper.min.css" />
+    <!-- 翻牌器 -->
+    <link rel="stylesheet" href="./static/js/cubeflop/cubeflop.css" />
+
+    <!-- 补间动画包 -->
+    <link rel="stylesheet" href="./static/css/custom-animation.css" />
+
+    <!-- 重置样式 -->
+    <link rel="stylesheet" href="./static/css/reset.css" />
+
+    <!-- 当前页面样式文件 -->
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- jquery -->
+    <script src="./static/js/jquery.min.js"></script>
+    <!-- echarts -->
+    <script src="./static/js/echarts/echarts.min.js"></script>
+    <!-- echarts 水球图 -->
+    <script src="./static/js/echarts/echarts-liquidfill.min.js"></script>
+    <!-- echarts 词云 -->
+    <script src="./static/js/echarts/echarts-wordcloud.min.js"></script>
+    <!-- javascript工具库 -->
+    <script src="./static/js/lodash.min.js"></script>
+    <!-- 二维码插件 -->
+    <script src="./static/js/qrcode.min.js"></script>
+    <!-- 轮播插件 -->
+    <script src="./static/js/swiper/swiper.min.js"></script>
+    <!-- 表格滚动插件 -->
+    <script src="./static/js/seamscroll.min.js"></script>
+    <!-- day 日期插件 -->
+    <script src="./static/js/dayjs/dayjs.min.js"></script>
+    <script src="./static/js/dayjs/zh-cn.js"></script>
+    <!-- 工具类 -->
+    <script src="./static/js/utils.js"></script>
+    <!-- 滚动数字所需要的插件 -->
+    <script src="./static/js/jquery.countTo.js"></script>
+    <!-- 翻牌器 -->
+    <script src="./static/js/cubeflop/cubeflop.js"></script>
+    <!-- d3 -->
+    <script src="./static/js/d3.js"></script>
+
+    <!-- 感谢使用微兔可视化，目前处于内测阶段，存在很多的不足开发人员在不断完善中，请谅解~ -->
+  </head>
+
+  <body>
+
+
+    <div class="container">
+      <!-- 组件2119a500-a950-11ed-bd7f-59a82614e004开始-->
+
+      <div id="location1">
+        <!-- <img src="location.png" onclick="playVideo(1)" style="top: 20px; left: 30px;">
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 183 111"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="183" height="111" fill="#14202D" />
+          <circle cx="130.552" cy="24.8774" r="6" fill="#43E8F3" />
+          <path
+            opacity="0.5"
+            d="M131.509 74L80.0186 111H183L131.509 74Z"
+            fill="url(#paint0_linear_1233:1875)"
+          />
+          <path
+            d="M66.1027 56.6328L0 111H132.205L66.1027 56.6328Z"
+            fill="url(#paint1_linear_1233:1875)"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_1233:1875"
+              x1="131.797"
+              y1="112.088"
+              x2="141.911"
+              y2="79.5955"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#3D9CFF" />
+              <stop offset="1" stop-color="#43E8F3" />
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear_1233:1875"
+              x1="66.4719"
+              y1="112.599"
+              x2="83.0284"
+              y2="66.1275"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#3D9CFF" />
+              <stop offset="1" stop-color="#43E8F3" />
+            </linearGradient>
+          </defs>
+        </svg> -->
+        <img class="marker" src="location.png" onclick="playVideo(1);">
+      </div>
+
+      <script type="text/javascript">
+        $(function() {
+            // 基于准备好的dom，初始化echarts实例
+            // 指定图表的配置项
+            let option = {};
+
+            // 指定文字的数据
+            let data = [{"url":"https://jsd.cdn.zzko.cn/gh/powerli2002/project-img@main/location.5ihnbhiajsk0.png"}]
+
+            data = data.map(item =>{
+              return {url: item['url']}
+            })
+            $("#location1 img").attr("src", data[0].url)
+            if(data[0].url) {
+              $("#location1 svg").css('display', 'none')
+              $("#location1 img").css('display', 'block')
+            }else {
+              $("#location1 img").css('display', 'none')
+              $("#location1 svg").css('display', 'block')
+            }
+        })
+
+      const videos = [
+        "./2.mp4",
+        "video2.mp4",
+        "video3.mp4"
+      ];
+
+      function playVideo(index) {
+        // const video1 = document.getElementById("iteme8d086c0-a93e-11ed-bd7f-59a82614e004");
+        // video1.src = videos[index - 1];
+        let option = {"isControlsShow":true,"isAutoPlay":false,"isLoop":false,"paly":false,"volume":0.5};
+        let parentNode = document.getElementById("div-video")
+            parentNode.innerHTML = null
+            let videoNode = document.createElement('video')
+            videoNode.style.width = '100%'
+            videoNode.style.height = '100%'
+            videoNode.muted = "muted"
+            videoNode.controls = option.isControlsShow
+            videoNode.autoplay = option.isAutoPlay
+            videoNode.loop = option.isLoop
+            let sourceNode = document.createElement("source")
+            sourceNode.src = videos[index - 1]
+            videoNode.appendChild(sourceNode)
+            parentNode.appendChild(videoNode)
+
+        // video1.play();
+      }
+
+      </script>
+
+      <!-- <script>
+        const videos = [
+          "2.mp4",
+          "video2.mp4",
+          "video3.mp4"
+        ];
+
+        function playVideo(index) {
+          const video = document.getElementById("iteme8d086c0-a93e-11ed-bd7f-59a82614e004");
+          video.src = videos[index - 1];
+          video.play();
+        }
+      </script> -->
+
+
+
+      <style>
+        #location1{
+          width: 75.5px;
+          height: 78.5px;
+        }
+        #location1 img {
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+      <!-- 组件2119a500-a950-11ed-bd7f-59a82614e004结束-->
+
+
+      <!-- 组件1b0af490-a93f-11ed-bd7f-59a82614e004开始-->
+
+      <div id="title1">
+        <h1>高新区场景建模与测定</h1>
+      </div>
+
+      <style>
+        #title1 {
+          color: #ffffff;
+          display: flex;
+          text-align: center;
+          line-height: 1;
+          font-style: normal;
+          justify-content: center;
+          align-items: center;
+
+        }
+      </style>
+
+      <!-- 组件1b0af490-a93f-11ed-bd7f-59a82614e004结束-->
+
+      <!-- 组件e8d086c0-a93e-11ed-bd7f-59a82614e004开始-->
+      <!-- 视频组件 -->
+      <div id="div-video">
+        <img src="https://cdn.staticaly.com/gh/powerli2002/project-img@main/QQ图片20221115190808.58urbnh7ciw0.webp" alt="image lost" width="900" height="800">
+      </div>
+
+      <script type="text/javascript">
+        $(function() {
+            // 基于准备好的dom，初始化echarts实例
+            // 指定图表的配置项
+            let option = {"isControlsShow":true,"isAutoPlay":false,"isLoop":false,"paly":false,"volume":0.5};
+
+            // 指定文字的数据
+            let data = [{"url":"https://cdn.staticaly.com/gh/powerli2002/project-img@main/QQ图片20221115190808.58urbnh7ciw0.webp"}]
+
+            // data = data.map(item =>{
+            //   return {url: item['url']}
+            // })
+            // let parentNode = document.getElementById("iteme8d086c0-a93e-11ed-bd7f-59a82614e004")
+            // parentNode.innerHTML = null
+            // let videoNode = document.createElement('video')
+            // videoNode.style.width = '100%'
+            // videoNode.style.height = '100%'
+            // videoNode.muted = "muted"
+            // videoNode.controls = option.isControlsShow
+            // videoNode.autoplay = option.isAutoPlay
+            // videoNode.loop = option.isLoop
+            // let sourceNode = document.createElement("source")
+            // sourceNode.src = data[0].url
+            // videoNode.appendChild(sourceNode)
+            // parentNode.appendChild(videoNode)
+
+            data = data.map(item =>{
+              return {url: item['url']}
+            })
+            $("#div-video img").attr("src", data[0].url)
+            if(data[0].url) {
+              $("#div-video svg").css('display', 'none')
+              $("#div-video img").css('display', 'block')
+            }else {
+              $("#div-video img").css('display', 'none')
+              $("#div-video svg").css('display', 'block')
+            }
+        })
+      </script>
+
+      <!-- 组件e8d086c0-a93e-11ed-bd7f-59a82614e004结束-->
+
+      <!-- 组件aab3a5c0-a93e-11ed-bd7f-59a82614e004开始-->
+
+      <div id="left-background">
+        <img class="marker" src="location.png" onclick="playVideo(1)" style="top: 20px; left: 30px;">
+        <img src="" alt="" />
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 183 111"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="183" height="111" fill="#14202D" />
+          <circle cx="130.552" cy="24.8774" r="6" fill="#43E8F3" />
+          <path
+            opacity="0.5"
+            d="M131.509 74L80.0186 111H183L131.509 74Z"
+            fill="url(#paint0_linear_1233:1875)"
+          />
+          <path
+            d="M66.1027 56.6328L0 111H132.205L66.1027 56.6328Z"
+            fill="url(#paint1_linear_1233:1875)"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_1233:1875"
+              x1="131.797"
+              y1="112.088"
+              x2="141.911"
+              y2="79.5955"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#3D9CFF" />
+              <stop offset="1" stop-color="#43E8F3" />
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear_1233:1875"
+              x1="66.4719"
+              y1="112.599"
+              x2="83.0284"
+              y2="66.1275"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#3D9CFF" />
+              <stop offset="1" stop-color="#43E8F3" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+
+      </div>
+
+      <script type="text/javascript">
+        $(function() {
+            // 基于准备好的dom，初始化echarts实例
+            // 指定图表的配置项
+            let option = {};
+
+            // 指定文字的数据
+            let data = [{"url":"https://cdn.staticaly.com/gh/powerli2002/project-img@main/QQ图片20230210174633.2w8vg4ri8hi0.jpg"}]
+
+
+            data = data.map(item =>{
+              return {url: item['url']}
+            })
+            $("#left-background img").attr("src", data[0].url)
+            if(data[0].url) {
+              $("#left-background svg").css('display', 'none')
+              $("#left-background img").css('display', 'block')
+            }else {
+              $("#left-background img").css('display', 'none')
+              $("#left-background svg").css('display', 'block')
+            }
+        })
+
+    //     const videos = [
+    //   "2.mp4",
+    //   "video2.mp4",
+    //   "video3.mp4"
+    // ];
+
+    // function playVideo(index) {
+    //   const video = document.getElementById("video");
+    //   video.src = videos1[index - 1];
+    //   video.play();
+    // }
+      </script>
+
+
+
+      <style>
+        #left-background{
+          width: 765.5px;
+          height: 951px;
+        }
+        #left-background img {
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+      <!-- 组件aab3a5c0-a93e-11ed-bd7f-59a82614e004结束-->
+
+      <!-- 组件ee494e37-030d-45e3-8ec4-d3cae0e0f821开始-->
+
+      <div id="itemee494e37-030d-45e3-8ec4-d3cae0e0f821">
+        <img
+          src="./static/images/59e094c7-5331-4224-910b-90f042791004.png"
+          alt=""
+        />
+      </div>
+      <style>
+        #itemee494e37-030d-45e3-8ec4-d3cae0e0f821 {
+          width: 1929.0000000000002px;
+          height: 92px;
+        }
+        #itemee494e37-030d-45e3-8ec4-d3cae0e0f821 img {
+          width: 100%;
+          height: 100%
+        }
+      </style>
+      <!-- 组件ee494e37-030d-45e3-8ec4-d3cae0e0f821结束-->
+    </div>
+  </body>
+  <script>
+
+
+
+
+
+
+      $(function () {
+
+
+            /**
+             *
+             * 自适应宽度处理
+             * 通过当前网页具体宽高 / 设计稿画板实际宽高 得到比例最终缩放页面
+             *
+             * 如果是同比例，比如12:9的尺寸比例，不管分辨率多大，都是能完全适应且不会被拉伸
+             * 如果不是在同一比例，简单来就像图片改变了比例就会被拉升
+             *
+             * 具体大小可自行设置，下面这句话也可以不要，修改style.css样式也可以，方法很多
+             *
+             */
+
+              document.getElementsByClassName("container")[0].style.transform = `scale(${window.innerWidth / 1920})`
+
+
+
+
+
+
+
+
+
+      })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     *
+     * @param {*} id
+     * @param {*} animations
+     * 执行动画库函数【不用修改,可自行调整位置】
+     * 声明初始值
+     * 判断动画是否结束
+     */
+    function playAnimation(id, animations){
+
+      let index = 0
+      let ele  = document.querySelector(id)
+      setAnimation(ele,animations[index])
+      ele.addEventListener('webkitAnimationEnd', function(){
+        if(index < animations.length - 1){
+          index ++
+          setAnimation(ele,animations[index])
+        }
+      })
+    }
+
+    /**
+     *
+     * @param {*} element
+     * @param {*} animation
+     * 执行动画库函数【不用修改,可自行调整位置】
+     * 取index对应的动画
+     * 给元素animation重新赋值
+     */
+    function setAnimation(element,animation) {
+      const action = `${animation.duration * 1000}ms ease ${animation.delayed * 1000}ms ${animation.loop ? "infinite" : animation.frequency} normal both running ${animation.type}`
+      element.style.animation = action
+    }
+  </script>
+</html>
